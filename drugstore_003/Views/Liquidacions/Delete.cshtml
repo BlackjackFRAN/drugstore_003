@@ -1,0 +1,72 @@
+﻿@model drugstore_003.Models.Liquidacions
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Liquidacions</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.anio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaDeposito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaDeposito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalNeto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalNeto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bruto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bruto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empleadoes.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empleadoes.nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

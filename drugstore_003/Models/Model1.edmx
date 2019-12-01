@@ -1,0 +1,1020 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Bd_drugstore_002Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Compras">
+          <Key>
+            <PropertyRef Name="idCompra" />
+          </Key>
+          <Property Name="idCompra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProveedor" Type="int" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="total" Type="float" />
+          <Property Name="fecha" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Conceptoes">
+          <Key>
+            <PropertyRef Name="idConcepto" />
+          </Key>
+          <Property Name="idConcepto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="porcentaje" Type="float" />
+          <Property Name="total" Type="float" />
+        </EntityType>
+        <EntityType Name="DetalleLiquidacions">
+          <Key>
+            <PropertyRef Name="idDetalle" />
+          </Key>
+          <Property Name="idDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idLiquidacion" Type="int" />
+          <Property Name="idConcepto" Type="int" />
+          <Property Name="monto" Type="float" />
+        </EntityType>
+        <EntityType Name="Direccions">
+          <Key>
+            <PropertyRef Name="idDireccion" />
+          </Key>
+          <Property Name="idDireccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="calle" Type="varchar" MaxLength="50" />
+          <Property Name="numero" Type="int" />
+          <Property Name="codigoPostal" Type="int" />
+        </EntityType>
+        <EntityType Name="Empleadoes">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="idEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idDireccion" Type="int" />
+          <Property Name="tipo" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" />
+          <Property Name="fechaNacimiento" Type="datetime" />
+          <Property Name="sueldoBase" Type="float" />
+          <Property Name="estadoCivil" Type="varchar" MaxLength="50" />
+          <Property Name="dni" Type="int" />
+        </EntityType>
+        <EntityType Name="Familiars">
+          <Key>
+            <PropertyRef Name="idFamiliar" />
+          </Key>
+          <Property Name="idFamiliar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" />
+          <Property Name="Parentezco" Type="varchar" MaxLength="50" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" />
+          <Property Name="fechaNacimiento" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LineaCompras">
+          <Key>
+            <PropertyRef Name="idLineaCompra" />
+          </Key>
+          <Property Name="idLineaCompra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCompra" Type="int" />
+          <Property Name="idProducto" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="subtotal" Type="float" />
+          <Property Name="precioCompra" Type="float" />
+        </EntityType>
+        <EntityType Name="LineaVentas">
+          <Key>
+            <PropertyRef Name="idLineaVenta" />
+          </Key>
+          <Property Name="idLineaVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idVenta" Type="int" />
+          <Property Name="idProducto" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="subtotal" Type="float" />
+          <Property Name="precio" Type="float" />
+        </EntityType>
+        <EntityType Name="Liquidacions">
+          <Key>
+            <PropertyRef Name="idLiquidacion" />
+          </Key>
+          <Property Name="idLiquidacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" />
+          <Property Name="anio" Type="int" />
+          <Property Name="mes" Type="int" />
+          <Property Name="fechaDeposito" Type="datetime" />
+          <Property Name="totalNeto" Type="float" />
+          <Property Name="bruto" Type="float" />
+        </EntityType>
+        <EntityType Name="Localidads">
+          <Key>
+            <PropertyRef Name="codigoPostal" />
+          </Key>
+          <Property Name="codigoPostal" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="idProvincia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Productoes">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="stock" Type="int" />
+          <Property Name="stockMinimo" Type="int" />
+          <Property Name="unidadMedida" Type="varchar" MaxLength="50" />
+          <Property Name="precioVenta" Type="float" />
+        </EntityType>
+        <EntityType Name="Proveedors">
+          <Key>
+            <PropertyRef Name="idProveedor" />
+          </Key>
+          <Property Name="idProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idDireccion" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" />
+          <Property Name="cuit" Type="int" />
+        </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="idProvincia" />
+          </Key>
+          <Property Name="idProvincia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" />
+          <Property Name="tipo" Type="int" />
+          <Property Name="usuario1" Type="varchar" MaxLength="50" />
+          <Property Name="contrasenia" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Ventas">
+          <Key>
+            <PropertyRef Name="idVenta" />
+          </Key>
+          <Property Name="idVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="total" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Compra_Proveedor">
+          <End Role="Proveedors" Type="Self.Proveedors" Multiplicity="0..1" />
+          <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedors">
+              <PropertyRef Name="idProveedor" />
+            </Principal>
+            <Dependent Role="Compras">
+              <PropertyRef Name="idProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compra_Usuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Compras">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleLiquidacion_Concepto">
+          <End Role="Conceptoes" Type="Self.Conceptoes" Multiplicity="0..1" />
+          <End Role="DetalleLiquidacions" Type="Self.DetalleLiquidacions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conceptoes">
+              <PropertyRef Name="idConcepto" />
+            </Principal>
+            <Dependent Role="DetalleLiquidacions">
+              <PropertyRef Name="idConcepto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleLiquidacion_Liquidacion">
+          <End Role="Liquidacions" Type="Self.Liquidacions" Multiplicity="0..1" />
+          <End Role="DetalleLiquidacions" Type="Self.DetalleLiquidacions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Liquidacions">
+              <PropertyRef Name="idLiquidacion" />
+            </Principal>
+            <Dependent Role="DetalleLiquidacions">
+              <PropertyRef Name="idLiquidacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direccion_Localidad">
+          <End Role="Localidads" Type="Self.Localidads" Multiplicity="0..1" />
+          <End Role="Direccions" Type="Self.Direccions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidads">
+              <PropertyRef Name="codigoPostal" />
+            </Principal>
+            <Dependent Role="Direccions">
+              <PropertyRef Name="codigoPostal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_direccion">
+          <End Role="Direccions" Type="Self.Direccions" Multiplicity="0..1" />
+          <End Role="Empleadoes" Type="Self.Empleadoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccions">
+              <PropertyRef Name="idDireccion" />
+            </Principal>
+            <Dependent Role="Empleadoes">
+              <PropertyRef Name="idDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Familiar_empleado">
+          <End Role="Empleadoes" Type="Self.Empleadoes" Multiplicity="0..1" />
+          <End Role="Familiars" Type="Self.Familiars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleadoes">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="Familiars">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaCompra_Compra">
+          <End Role="Compras" Type="Self.Compras" Multiplicity="0..1" />
+          <End Role="LineaCompras" Type="Self.LineaCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compras">
+              <PropertyRef Name="idCompra" />
+            </Principal>
+            <Dependent Role="LineaCompras">
+              <PropertyRef Name="idCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaCompra_Producto">
+          <End Role="Productoes" Type="Self.Productoes" Multiplicity="0..1" />
+          <End Role="LineaCompras" Type="Self.LineaCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productoes">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="LineaCompras">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaVenta_Producto">
+          <End Role="Productoes" Type="Self.Productoes" Multiplicity="0..1" />
+          <End Role="LineaVentas" Type="Self.LineaVentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productoes">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="LineaVentas">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaVenta_Venta">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+          <End Role="LineaVentas" Type="Self.LineaVentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="idVenta" />
+            </Principal>
+            <Dependent Role="LineaVentas">
+              <PropertyRef Name="idVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liquidacion_Empleado">
+          <End Role="Empleadoes" Type="Self.Empleadoes" Multiplicity="0..1" />
+          <End Role="Liquidacions" Type="Self.Liquidacions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleadoes">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="Liquidacions">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Localidad_Provincia">
+          <End Role="Provincias" Type="Self.Provincias" Multiplicity="1" />
+          <End Role="Localidads" Type="Self.Localidads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="idProvincia" />
+            </Principal>
+            <Dependent Role="Localidads">
+              <PropertyRef Name="idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedor_Direccion">
+          <End Role="Direccions" Type="Self.Direccions" Multiplicity="0..1" />
+          <End Role="Proveedors" Type="Self.Proveedors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccions">
+              <PropertyRef Name="idDireccion" />
+            </Principal>
+            <Dependent Role="Proveedors">
+              <PropertyRef Name="idDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Bd_drugstore_002ModelStoreContainer">
+          <EntitySet Name="Compras" EntityType="Self.Compras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conceptoes" EntityType="Self.Conceptoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleLiquidacions" EntityType="Self.DetalleLiquidacions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Direccions" EntityType="Self.Direccions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleadoes" EntityType="Self.Empleadoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Familiars" EntityType="Self.Familiars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LineaCompras" EntityType="Self.LineaCompras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LineaVentas" EntityType="Self.LineaVentas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Liquidacions" EntityType="Self.Liquidacions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Localidads" EntityType="Self.Localidads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productoes" EntityType="Self.Productoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedors" EntityType="Self.Proveedors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provincias" EntityType="Self.Provincias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Compra_Proveedor" Association="Self.FK_Compra_Proveedor">
+            <End Role="Proveedors" EntitySet="Proveedors" />
+            <End Role="Compras" EntitySet="Compras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compra_Usuario" Association="Self.FK_Compra_Usuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Compras" EntitySet="Compras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleLiquidacion_Concepto" Association="Self.FK_DetalleLiquidacion_Concepto">
+            <End Role="Conceptoes" EntitySet="Conceptoes" />
+            <End Role="DetalleLiquidacions" EntitySet="DetalleLiquidacions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleLiquidacion_Liquidacion" Association="Self.FK_DetalleLiquidacion_Liquidacion">
+            <End Role="Liquidacions" EntitySet="Liquidacions" />
+            <End Role="DetalleLiquidacions" EntitySet="DetalleLiquidacions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Localidad" Association="Self.FK_Direccion_Localidad">
+            <End Role="Localidads" EntitySet="Localidads" />
+            <End Role="Direccions" EntitySet="Direccions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_direccion" Association="Self.FK_Empleado_direccion">
+            <End Role="Direccions" EntitySet="Direccions" />
+            <End Role="Empleadoes" EntitySet="Empleadoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Familiar_empleado" Association="Self.FK_Familiar_empleado">
+            <End Role="Empleadoes" EntitySet="Empleadoes" />
+            <End Role="Familiars" EntitySet="Familiars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaCompra_Compra" Association="Self.FK_LineaCompra_Compra">
+            <End Role="Compras" EntitySet="Compras" />
+            <End Role="LineaCompras" EntitySet="LineaCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaCompra_Producto" Association="Self.FK_LineaCompra_Producto">
+            <End Role="Productoes" EntitySet="Productoes" />
+            <End Role="LineaCompras" EntitySet="LineaCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaVenta_Producto" Association="Self.FK_LineaVenta_Producto">
+            <End Role="Productoes" EntitySet="Productoes" />
+            <End Role="LineaVentas" EntitySet="LineaVentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaVenta_Venta" Association="Self.FK_LineaVenta_Venta">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="LineaVentas" EntitySet="LineaVentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liquidacion_Empleado" Association="Self.FK_Liquidacion_Empleado">
+            <End Role="Empleadoes" EntitySet="Empleadoes" />
+            <End Role="Liquidacions" EntitySet="Liquidacions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Localidad_Provincia" Association="Self.FK_Localidad_Provincia">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Localidads" EntitySet="Localidads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedor_Direccion" Association="Self.FK_Proveedor_Direccion">
+            <End Role="Direccions" EntitySet="Direccions" />
+            <End Role="Proveedors" EntitySet="Proveedors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Bd_drugstore_002Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Compras">
+          <Key>
+            <PropertyRef Name="idCompra" />
+          </Key>
+          <Property Name="idCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProveedor" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="total" Type="Double" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Proveedors" Relationship="Self.FK_Compra_Proveedor" FromRole="Compras" ToRole="Proveedors" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Compra_Usuario" FromRole="Compras" ToRole="Usuarios" />
+          <NavigationProperty Name="LineaCompras" Relationship="Self.FK_LineaCompra_Compra" FromRole="Compras" ToRole="LineaCompras" />
+        </EntityType>
+        <EntityType Name="Conceptoes">
+          <Key>
+            <PropertyRef Name="idConcepto" />
+          </Key>
+          <Property Name="idConcepto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="porcentaje" Type="Double" />
+          <Property Name="total" Type="Double" />
+          <NavigationProperty Name="DetalleLiquidacions" Relationship="Self.FK_DetalleLiquidacion_Concepto" FromRole="Conceptoes" ToRole="DetalleLiquidacions" />
+        </EntityType>
+        <EntityType Name="DetalleLiquidacions">
+          <Key>
+            <PropertyRef Name="idDetalle" />
+          </Key>
+          <Property Name="idDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idLiquidacion" Type="Int32" />
+          <Property Name="idConcepto" Type="Int32" />
+          <Property Name="monto" Type="Double" />
+          <NavigationProperty Name="Conceptoes" Relationship="Self.FK_DetalleLiquidacion_Concepto" FromRole="DetalleLiquidacions" ToRole="Conceptoes" />
+          <NavigationProperty Name="Liquidacions" Relationship="Self.FK_DetalleLiquidacion_Liquidacion" FromRole="DetalleLiquidacions" ToRole="Liquidacions" />
+        </EntityType>
+        <EntityType Name="Direccions">
+          <Key>
+            <PropertyRef Name="idDireccion" />
+          </Key>
+          <Property Name="idDireccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="numero" Type="Int32" />
+          <Property Name="codigoPostal" Type="Int32" />
+          <NavigationProperty Name="Localidads" Relationship="Self.FK_Direccion_Localidad" FromRole="Direccions" ToRole="Localidads" />
+          <NavigationProperty Name="Empleadoes" Relationship="Self.FK_Empleado_direccion" FromRole="Direccions" ToRole="Empleadoes" />
+          <NavigationProperty Name="Proveedors" Relationship="Self.FK_Proveedor_Direccion" FromRole="Direccions" ToRole="Proveedors" />
+        </EntityType>
+        <EntityType Name="Empleadoes">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="idEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDireccion" Type="Int32" />
+          <Property Name="tipo" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="sueldoBase" Type="Double" />
+          <Property Name="estadoCivil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dni" Type="Int32" />
+          <NavigationProperty Name="Direccions" Relationship="Self.FK_Empleado_direccion" FromRole="Empleadoes" ToRole="Direccions" />
+          <NavigationProperty Name="Familiars" Relationship="Self.FK_Familiar_empleado" FromRole="Empleadoes" ToRole="Familiars" />
+          <NavigationProperty Name="Liquidacions" Relationship="Self.FK_Liquidacion_Empleado" FromRole="Empleadoes" ToRole="Liquidacions" />
+        </EntityType>
+        <EntityType Name="Familiars">
+          <Key>
+            <PropertyRef Name="idFamiliar" />
+          </Key>
+          <Property Name="idFamiliar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEmpleado" Type="Int32" />
+          <Property Name="Parentezco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Empleadoes" Relationship="Self.FK_Familiar_empleado" FromRole="Familiars" ToRole="Empleadoes" />
+        </EntityType>
+        <EntityType Name="LineaCompras">
+          <Key>
+            <PropertyRef Name="idLineaCompra" />
+          </Key>
+          <Property Name="idLineaCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCompra" Type="Int32" />
+          <Property Name="idProducto" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="subtotal" Type="Double" />
+          <Property Name="precioCompra" Type="Double" />
+          <NavigationProperty Name="Compras" Relationship="Self.FK_LineaCompra_Compra" FromRole="LineaCompras" ToRole="Compras" />
+          <NavigationProperty Name="Productoes" Relationship="Self.FK_LineaCompra_Producto" FromRole="LineaCompras" ToRole="Productoes" />
+        </EntityType>
+        <EntityType Name="LineaVentas">
+          <Key>
+            <PropertyRef Name="idLineaVenta" />
+          </Key>
+          <Property Name="idLineaVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idVenta" Type="Int32" />
+          <Property Name="idProducto" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="subtotal" Type="Double" />
+          <Property Name="precio" Type="Double" />
+          <NavigationProperty Name="Productoes" Relationship="Self.FK_LineaVenta_Producto" FromRole="LineaVentas" ToRole="Productoes" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK_LineaVenta_Venta" FromRole="LineaVentas" ToRole="Ventas" />
+        </EntityType>
+        <EntityType Name="Liquidacions">
+          <Key>
+            <PropertyRef Name="idLiquidacion" />
+          </Key>
+          <Property Name="idLiquidacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEmpleado" Type="Int32" />
+          <Property Name="anio" Type="Int32" />
+          <Property Name="mes" Type="Int32" />
+          <Property Name="fechaDeposito" Type="DateTime" Precision="3" />
+          <Property Name="totalNeto" Type="Double" />
+          <Property Name="bruto" Type="Double" />
+          <NavigationProperty Name="DetalleLiquidacions" Relationship="Self.FK_DetalleLiquidacion_Liquidacion" FromRole="Liquidacions" ToRole="DetalleLiquidacions" />
+          <NavigationProperty Name="Empleadoes" Relationship="Self.FK_Liquidacion_Empleado" FromRole="Liquidacions" ToRole="Empleadoes" />
+        </EntityType>
+        <EntityType Name="Localidads">
+          <Key>
+            <PropertyRef Name="codigoPostal" />
+          </Key>
+          <Property Name="codigoPostal" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idProvincia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Direccions" Relationship="Self.FK_Direccion_Localidad" FromRole="Localidads" ToRole="Direccions" />
+          <NavigationProperty Name="Provincias" Relationship="Self.FK_Localidad_Provincia" FromRole="Localidads" ToRole="Provincias" />
+        </EntityType>
+        <EntityType Name="Productoes">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="stock" Type="Int32" />
+          <Property Name="stockMinimo" Type="Int32" />
+          <Property Name="unidadMedida" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="precioVenta" Type="Double" />
+          <NavigationProperty Name="LineaCompras" Relationship="Self.FK_LineaCompra_Producto" FromRole="Productoes" ToRole="LineaCompras" />
+          <NavigationProperty Name="LineaVentas" Relationship="Self.FK_LineaVenta_Producto" FromRole="Productoes" ToRole="LineaVentas" />
+        </EntityType>
+        <EntityType Name="Proveedors">
+          <Key>
+            <PropertyRef Name="idProveedor" />
+          </Key>
+          <Property Name="idProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDireccion" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cuit" Type="Int32" />
+          <NavigationProperty Name="Compras" Relationship="Self.FK_Compra_Proveedor" FromRole="Proveedors" ToRole="Compras" />
+          <NavigationProperty Name="Direccions" Relationship="Self.FK_Proveedor_Direccion" FromRole="Proveedors" ToRole="Direccions" />
+        </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="idProvincia" />
+          </Key>
+          <Property Name="idProvincia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Localidads" Relationship="Self.FK_Localidad_Provincia" FromRole="Provincias" ToRole="Localidads" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEmpleado" Type="Int32" />
+          <Property Name="tipo" Type="Int32" />
+          <Property Name="usuario1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="contrasenia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Compras" Relationship="Self.FK_Compra_Usuario" FromRole="Usuarios" ToRole="Compras" />
+        </EntityType>
+        <EntityType Name="Ventas">
+          <Key>
+            <PropertyRef Name="idVenta" />
+          </Key>
+          <Property Name="idVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="total" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="LineaVentas" Relationship="Self.FK_LineaVenta_Venta" FromRole="Ventas" ToRole="LineaVentas" />
+        </EntityType>
+        <Association Name="FK_Compra_Proveedor">
+          <End Role="Proveedors" Type="Self.Proveedors" Multiplicity="0..1" />
+          <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedors">
+              <PropertyRef Name="idProveedor" />
+            </Principal>
+            <Dependent Role="Compras">
+              <PropertyRef Name="idProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compra_Usuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Compras">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaCompra_Compra">
+          <End Role="Compras" Type="Self.Compras" Multiplicity="0..1" />
+          <End Role="LineaCompras" Type="Self.LineaCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compras">
+              <PropertyRef Name="idCompra" />
+            </Principal>
+            <Dependent Role="LineaCompras">
+              <PropertyRef Name="idCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleLiquidacion_Concepto">
+          <End Role="Conceptoes" Type="Self.Conceptoes" Multiplicity="0..1" />
+          <End Role="DetalleLiquidacions" Type="Self.DetalleLiquidacions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conceptoes">
+              <PropertyRef Name="idConcepto" />
+            </Principal>
+            <Dependent Role="DetalleLiquidacions">
+              <PropertyRef Name="idConcepto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleLiquidacion_Liquidacion">
+          <End Role="Liquidacions" Type="Self.Liquidacions" Multiplicity="0..1" />
+          <End Role="DetalleLiquidacions" Type="Self.DetalleLiquidacions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Liquidacions">
+              <PropertyRef Name="idLiquidacion" />
+            </Principal>
+            <Dependent Role="DetalleLiquidacions">
+              <PropertyRef Name="idLiquidacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direccion_Localidad">
+          <End Role="Localidads" Type="Self.Localidads" Multiplicity="0..1" />
+          <End Role="Direccions" Type="Self.Direccions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidads">
+              <PropertyRef Name="codigoPostal" />
+            </Principal>
+            <Dependent Role="Direccions">
+              <PropertyRef Name="codigoPostal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_direccion">
+          <End Role="Direccions" Type="Self.Direccions" Multiplicity="0..1" />
+          <End Role="Empleadoes" Type="Self.Empleadoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccions">
+              <PropertyRef Name="idDireccion" />
+            </Principal>
+            <Dependent Role="Empleadoes">
+              <PropertyRef Name="idDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedor_Direccion">
+          <End Role="Direccions" Type="Self.Direccions" Multiplicity="0..1" />
+          <End Role="Proveedors" Type="Self.Proveedors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccions">
+              <PropertyRef Name="idDireccion" />
+            </Principal>
+            <Dependent Role="Proveedors">
+              <PropertyRef Name="idDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Familiar_empleado">
+          <End Role="Empleadoes" Type="Self.Empleadoes" Multiplicity="0..1" />
+          <End Role="Familiars" Type="Self.Familiars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleadoes">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="Familiars">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liquidacion_Empleado">
+          <End Role="Empleadoes" Type="Self.Empleadoes" Multiplicity="0..1" />
+          <End Role="Liquidacions" Type="Self.Liquidacions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleadoes">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="Liquidacions">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaCompra_Producto">
+          <End Role="Productoes" Type="Self.Productoes" Multiplicity="0..1" />
+          <End Role="LineaCompras" Type="Self.LineaCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productoes">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="LineaCompras">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaVenta_Producto">
+          <End Role="Productoes" Type="Self.Productoes" Multiplicity="0..1" />
+          <End Role="LineaVentas" Type="Self.LineaVentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productoes">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="LineaVentas">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaVenta_Venta">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+          <End Role="LineaVentas" Type="Self.LineaVentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="idVenta" />
+            </Principal>
+            <Dependent Role="LineaVentas">
+              <PropertyRef Name="idVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Localidad_Provincia">
+          <End Role="Provincias" Type="Self.Provincias" Multiplicity="1" />
+          <End Role="Localidads" Type="Self.Localidads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="idProvincia" />
+            </Principal>
+            <Dependent Role="Localidads">
+              <PropertyRef Name="idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Bd_drugstore_002Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Compras" EntityType="Self.Compras" />
+          <EntitySet Name="Conceptoes" EntityType="Self.Conceptoes" />
+          <EntitySet Name="DetalleLiquidacions" EntityType="Self.DetalleLiquidacions" />
+          <EntitySet Name="Direccions" EntityType="Self.Direccions" />
+          <EntitySet Name="Empleadoes" EntityType="Self.Empleadoes" />
+          <EntitySet Name="Familiars" EntityType="Self.Familiars" />
+          <EntitySet Name="LineaCompras" EntityType="Self.LineaCompras" />
+          <EntitySet Name="LineaVentas" EntityType="Self.LineaVentas" />
+          <EntitySet Name="Liquidacions" EntityType="Self.Liquidacions" />
+          <EntitySet Name="Localidads" EntityType="Self.Localidads" />
+          <EntitySet Name="Productoes" EntityType="Self.Productoes" />
+          <EntitySet Name="Proveedors" EntityType="Self.Proveedors" />
+          <EntitySet Name="Provincias" EntityType="Self.Provincias" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Ventas" EntityType="Self.Ventas" />
+          <AssociationSet Name="FK_Compra_Proveedor" Association="Self.FK_Compra_Proveedor">
+            <End Role="Proveedors" EntitySet="Proveedors" />
+            <End Role="Compras" EntitySet="Compras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compra_Usuario" Association="Self.FK_Compra_Usuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Compras" EntitySet="Compras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaCompra_Compra" Association="Self.FK_LineaCompra_Compra">
+            <End Role="Compras" EntitySet="Compras" />
+            <End Role="LineaCompras" EntitySet="LineaCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleLiquidacion_Concepto" Association="Self.FK_DetalleLiquidacion_Concepto">
+            <End Role="Conceptoes" EntitySet="Conceptoes" />
+            <End Role="DetalleLiquidacions" EntitySet="DetalleLiquidacions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleLiquidacion_Liquidacion" Association="Self.FK_DetalleLiquidacion_Liquidacion">
+            <End Role="Liquidacions" EntitySet="Liquidacions" />
+            <End Role="DetalleLiquidacions" EntitySet="DetalleLiquidacions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Localidad" Association="Self.FK_Direccion_Localidad">
+            <End Role="Localidads" EntitySet="Localidads" />
+            <End Role="Direccions" EntitySet="Direccions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_direccion" Association="Self.FK_Empleado_direccion">
+            <End Role="Direccions" EntitySet="Direccions" />
+            <End Role="Empleadoes" EntitySet="Empleadoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedor_Direccion" Association="Self.FK_Proveedor_Direccion">
+            <End Role="Direccions" EntitySet="Direccions" />
+            <End Role="Proveedors" EntitySet="Proveedors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Familiar_empleado" Association="Self.FK_Familiar_empleado">
+            <End Role="Empleadoes" EntitySet="Empleadoes" />
+            <End Role="Familiars" EntitySet="Familiars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liquidacion_Empleado" Association="Self.FK_Liquidacion_Empleado">
+            <End Role="Empleadoes" EntitySet="Empleadoes" />
+            <End Role="Liquidacions" EntitySet="Liquidacions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaCompra_Producto" Association="Self.FK_LineaCompra_Producto">
+            <End Role="Productoes" EntitySet="Productoes" />
+            <End Role="LineaCompras" EntitySet="LineaCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaVenta_Producto" Association="Self.FK_LineaVenta_Producto">
+            <End Role="Productoes" EntitySet="Productoes" />
+            <End Role="LineaVentas" EntitySet="LineaVentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaVenta_Venta" Association="Self.FK_LineaVenta_Venta">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="LineaVentas" EntitySet="LineaVentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Localidad_Provincia" Association="Self.FK_Localidad_Provincia">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Localidads" EntitySet="Localidads" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Bd_drugstore_002ModelStoreContainer" CdmEntityContainer="Bd_drugstore_002Entities">
+          <EntitySetMapping Name="Compras">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.Compras">
+              <MappingFragment StoreEntitySet="Compras">
+                <ScalarProperty Name="idCompra" ColumnName="idCompra" />
+                <ScalarProperty Name="idProveedor" ColumnName="idProveedor" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conceptoes">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.Conceptoes">
+              <MappingFragment StoreEntitySet="Conceptoes">
+                <ScalarProperty Name="idConcepto" ColumnName="idConcepto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleLiquidacions">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.DetalleLiquidacions">
+              <MappingFragment StoreEntitySet="DetalleLiquidacions">
+                <ScalarProperty Name="idDetalle" ColumnName="idDetalle" />
+                <ScalarProperty Name="idLiquidacion" ColumnName="idLiquidacion" />
+                <ScalarProperty Name="idConcepto" ColumnName="idConcepto" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direccions">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.Direccions">
+              <MappingFragment StoreEntitySet="Direccions">
+                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleadoes">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.Empleadoes">
+              <MappingFragment StoreEntitySet="Empleadoes">
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="sueldoBase" ColumnName="sueldoBase" />
+                <ScalarProperty Name="estadoCivil" ColumnName="estadoCivil" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Familiars">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.Familiars">
+              <MappingFragment StoreEntitySet="Familiars">
+                <ScalarProperty Name="idFamiliar" ColumnName="idFamiliar" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="Parentezco" ColumnName="Parentezco" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LineaCompras">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.LineaCompras">
+              <MappingFragment StoreEntitySet="LineaCompras">
+                <ScalarProperty Name="idLineaCompra" ColumnName="idLineaCompra" />
+                <ScalarProperty Name="idCompra" ColumnName="idCompra" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="precioCompra" ColumnName="precioCompra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LineaVentas">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.LineaVentas">
+              <MappingFragment StoreEntitySet="LineaVentas">
+                <ScalarProperty Name="idLineaVenta" ColumnName="idLineaVenta" />
+                <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Liquidacions">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.Liquidacions">
+              <MappingFragment StoreEntitySet="Liquidacions">
+                <ScalarProperty Name="idLiquidacion" ColumnName="idLiquidacion" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="anio" ColumnName="anio" />
+                <ScalarProperty Name="mes" ColumnName="mes" />
+                <ScalarProperty Name="fechaDeposito" ColumnName="fechaDeposito" />
+                <ScalarProperty Name="totalNeto" ColumnName="totalNeto" />
+                <ScalarProperty Name="bruto" ColumnName="bruto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Localidads">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.Localidads">
+              <MappingFragment StoreEntitySet="Localidads">
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productoes">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.Productoes">
+              <MappingFragment StoreEntitySet="Productoes">
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="stockMinimo" ColumnName="stockMinimo" />
+                <ScalarProperty Name="unidadMedida" ColumnName="unidadMedida" />
+                <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedors">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.Proveedors">
+              <MappingFragment StoreEntitySet="Proveedors">
+                <ScalarProperty Name="idProveedor" ColumnName="idProveedor" />
+                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="cuit" ColumnName="cuit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincias">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.Provincias">
+              <MappingFragment StoreEntitySet="Provincias">
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="usuario1" ColumnName="usuario1" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ventas">
+            <EntityTypeMapping TypeName="Bd_drugstore_002Model.Ventas">
+              <MappingFragment StoreEntitySet="Ventas">
+                <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

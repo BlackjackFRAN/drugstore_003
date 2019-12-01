@@ -1,0 +1,50 @@
+﻿@model drugstore_003.Models.Usuarios
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idEmpleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idEmpleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contrasenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contrasenia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idUsuario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

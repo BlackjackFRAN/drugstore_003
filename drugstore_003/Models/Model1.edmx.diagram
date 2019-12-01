@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6862ebec822840db8069e54ba92c7bcb" Name="Diagram1">
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.Compras" Width="1.5" PointX="9.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.Conceptoes" Width="1.5" PointX="9.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.DetalleLiquidacions" Width="1.5" PointX="12" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.Direccions" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.Empleadoes" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.Familiars" Width="1.5" PointX="9.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.LineaCompras" Width="1.5" PointX="12" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.LineaVentas" Width="1.5" PointX="12" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.Liquidacions" Width="1.5" PointX="9.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.Localidads" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.Productoes" Width="1.5" PointX="9.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.Proveedors" Width="1.5" PointX="7.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.Provincias" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.Usuarios" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bd_drugstore_002Model.Ventas" Width="1.5" PointX="9.75" PointY="20.125" IsExpanded="true" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_Compra_Proveedor" ManuallyRouted="false" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_Compra_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_LineaCompra_Compra" ManuallyRouted="false" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_DetalleLiquidacion_Concepto" ManuallyRouted="false" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_DetalleLiquidacion_Liquidacion" ManuallyRouted="false" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_Direccion_Localidad" ManuallyRouted="false" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_Empleado_direccion" ManuallyRouted="false" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_Proveedor_Direccion" ManuallyRouted="false" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_Familiar_empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_Liquidacion_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_LineaCompra_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_LineaVenta_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_LineaVenta_Venta" ManuallyRouted="false" />
+        <AssociationConnector Association="Bd_drugstore_002Model.FK_Localidad_Provincia" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

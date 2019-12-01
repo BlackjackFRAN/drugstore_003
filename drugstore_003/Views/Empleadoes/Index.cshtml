@@ -1,0 +1,75 @@
+﻿@model IEnumerable<drugstore_003.Models.Empleadoes>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaNacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sueldoBase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estadoCivil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccions.calle)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaNacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sueldoBase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estadoCivil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dni)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccions.calle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idEmpleado }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idEmpleado }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idEmpleado })
+        </td>
+    </tr>
+}
+
+</table>

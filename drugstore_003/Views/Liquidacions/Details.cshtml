@@ -1,0 +1,66 @@
+﻿@model drugstore_003.Models.Liquidacions
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Liquidacions</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.anio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaDeposito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaDeposito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalNeto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalNeto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bruto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bruto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empleadoes.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empleadoes.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idLiquidacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

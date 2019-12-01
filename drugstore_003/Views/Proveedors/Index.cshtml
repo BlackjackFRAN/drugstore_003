@@ -1,0 +1,51 @@
+﻿@model IEnumerable<drugstore_003.Models.Proveedors>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cuit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccions.calle)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cuit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccions.calle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idProveedor }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idProveedor }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idProveedor })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<drugstore_003.Models.Liquidacions>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.anio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaDeposito)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.totalNeto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bruto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empleadoes.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.anio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaDeposito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.totalNeto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bruto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empleadoes.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idLiquidacion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idLiquidacion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idLiquidacion })
+        </td>
+    </tr>
+}
+
+</table>
