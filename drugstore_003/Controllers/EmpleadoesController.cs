@@ -36,6 +36,61 @@ namespace drugstore_003.Controllers
             return View(empleadoes);
         }
 
+
+        // GET: Empleadoes/Create
+        public ActionResult Create()
+        {
+            List<Provincias> lista = db.Provincias.ToList();
+            ViewBag.ListaProvincia = new SelectList(lista, "idProvincia", "nombre");
+            return View();
+        }
+
+        public JsonResult GetLocalidades(int idProvincia)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            List<Localidads> lista = db.Localidads.Where(x => x.idProvincia == idProvincia).ToList();
+            return Json(lista, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(EmpleadoCLS empleado)
+        {
+            if (!ModelState.IsValid)
+            {
+                List<Provincias> lista = db.Provincias.ToList();
+                ViewBag.ListaProvincia = new SelectList(lista, "idProvincia", "nombre");
+                return View(empleado);
+            }
+
+
+
+            Direccions dir = new Direccions();
+            dir.calle = empleado.calle;
+            dir.numero = empleado.numero;
+            dir.codigoPostal = empleado.codigoPostal;
+            db.Direccions.Add(dir);
+            db.SaveChanges();
+
+            Empleadoes emp = new Empleadoes();
+            emp.tipo = empleado.tipo;
+            emp.nombre = empleado.nombre;
+            emp.apellido = empleado.apellido;
+            emp.fechaNacimiento = empleado.fechaNacimiento;
+            emp.sueldoBase = empleado.sueldoBase;
+            emp.estadoCivil = empleado.estadoCivil;
+            emp.dni = empleado.dni;
+            Direccions direccion = db.Direccions.Where(x => x.calle == empleado.calle && x.numero == empleado.numero).FirstOrDefault();
+            emp.idDireccion = direccion.idDireccion;
+            db.Empleadoes.Add(emp);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        /*
+
         // GET: Empleadoes/Create
         public ActionResult Create()
         {
@@ -61,6 +116,8 @@ namespace drugstore_003.Controllers
             return View(empleadoes);
         }
 
+        */
+
         // GET: Empleadoes/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -76,6 +133,9 @@ namespace drugstore_003.Controllers
             ViewBag.idDireccion = new SelectList(db.Direccions, "idDireccion", "calle", empleadoes.idDireccion);
             return View(empleadoes);
         }
+
+        
+
 
         // POST: Empleadoes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 

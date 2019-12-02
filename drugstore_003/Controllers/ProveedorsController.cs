@@ -39,6 +39,57 @@ namespace drugstore_003.Controllers
         // GET: Proveedors/Create
         public ActionResult Create()
         {
+            List<Provincias> lista = db.Provincias.ToList();
+            ViewBag.ListaProvincia = new SelectList(lista, "idProvincia", "nombre");
+            return View();
+        }
+
+        public JsonResult GetLocalidades(int idProvincia)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            List<Localidads> lista = db.Localidads.Where(x => x.idProvincia == idProvincia).ToList();
+            return Json(lista, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ProveedorCLS proveedor)
+        {
+            if (!ModelState.IsValid)
+            {
+                List<Provincias> lista = db.Provincias.ToList();
+                ViewBag.ListaProvincia = new SelectList(lista, "idProvincia", "nombre");
+                return View(proveedor);
+            }
+
+
+
+            Direccions dir = new Direccions();
+            dir.calle = proveedor.calle;
+            dir.numero = proveedor.numero;
+            dir.codigoPostal = proveedor.codigoPostal;
+            db.Direccions.Add(dir);
+            db.SaveChanges();
+
+
+            Proveedors prov = new Proveedors();
+            prov.nombre = proveedor.nombre;
+            prov.apellido = proveedor.apellido;
+            prov.cuit = proveedor.cuit;
+            Direccions direccion = db.Direccions.Where(x => x.calle == proveedor.calle && x.numero == proveedor.numero).FirstOrDefault();
+            prov.idDireccion = direccion.idDireccion;
+            db.Proveedors.Add(prov);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
+        /*
+        
+        // GET: Proveedors/Create
+        public ActionResult Create()
+        {
             ViewBag.idDireccion = new SelectList(db.Direccions, "idDireccion", "calle");
             return View();
         }
@@ -60,6 +111,8 @@ namespace drugstore_003.Controllers
             ViewBag.idDireccion = new SelectList(db.Direccions, "idDireccion", "calle", proveedors.idDireccion);
             return View(proveedors);
         }
+
+        */
 
         // GET: Proveedors/Edit/5
         public ActionResult Edit(int? id)
