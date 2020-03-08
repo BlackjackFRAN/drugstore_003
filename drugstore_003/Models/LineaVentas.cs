@@ -12,6 +12,7 @@ namespace drugstore_003.Models
     using System;
     using System.Collections.Generic;
     
+    
     public partial class LineaVentas
     {
         public int idLineaVenta { get; set; }
@@ -20,7 +21,7 @@ namespace drugstore_003.Models
         public Nullable<int> cantidad { get; set; }
         public Nullable<double> subtotal { get; set; }
         public Nullable<double> precio { get; set; }
-    
+
         public virtual Productoes Productoes { get; set; }
         public virtual Ventas Ventas { get; set; }
     }
