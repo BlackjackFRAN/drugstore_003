@@ -8,6 +8,7 @@ namespace drugstore_003
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new Filtros.VerificaSesion());
         }
     }
 }
