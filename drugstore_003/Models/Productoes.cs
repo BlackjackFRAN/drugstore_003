@@ -27,7 +27,12 @@ namespace drugstore_003.Models
         public Nullable<int> stockMinimo { get; set; }
         public string unidadMedida { get; set; }
         public Nullable<double> precioVenta { get; set; }
-    
+
+        public Productoes(int idProducto)
+        {
+            this.idProducto = idProducto;
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LineaCompras> LineaCompras { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

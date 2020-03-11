@@ -31,6 +31,7 @@ namespace drugstore_003.Controllers
                     }
 
                     Session["user"] = oUser;
+                    Session["categoria"] = oUser.tipo;
                 }
                 return RedirectToAction("Index", "Home");
             }

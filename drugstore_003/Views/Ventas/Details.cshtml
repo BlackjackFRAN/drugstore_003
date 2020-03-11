@@ -1,7 +1,8 @@
-﻿@model drugstore_003.Models.Ventas
+﻿@model drugstore_003.Models.VentaCLS
 
 @{
     ViewBag.Title = "Details";
+    //  List<SelectListItem> lista = ViewBag.listaLineas;
 }
 
 <h2>Details</h2>
@@ -36,7 +37,53 @@
 
     </dl>
 </div>
+
+<table class="table">
+    <tr>
+        <th>
+            idProducto
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th>
+            precio
+        </th>
+        <th>
+            cantidad
+        </th>
+        <th>
+            subtotal
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model.LineaVentas)
+    {
+        <tr>
+            <td>
+                @item.idProducto
+            </td>
+            <td>
+                @item.descripcion
+            </td>
+            <td>
+                @item.precio
+            </td>
+            <td>
+                @item.cantidad
+            </td>
+            <td>
+                @item.subtotal
+            </td>
+
+        </tr>
+    }
+
+</table>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.idVenta }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Index")
 </p>

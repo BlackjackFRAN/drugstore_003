@@ -18,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.idVenta, "idVenta", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("idVenta", null, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.idVenta, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.idVenta, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -64,7 +64,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Index")
 </div>
 
 @section Scripts {
