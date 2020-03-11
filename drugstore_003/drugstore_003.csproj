@@ -164,6 +164,7 @@
     <Compile Include="Models\Familiars.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LineaCompraCLS.cs" />
     <Compile Include="Models\LineaCompras.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -346,6 +347,7 @@
     <Content Include="Views\Ventas\Edit.cshtml" />
     <Content Include="Views\Ventas\Index.cshtml" />
     <Content Include="Views\Ventas\NuevaVenta.cshtml" />
+    <Content Include="Views\Liquidacions\Liquidacion.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -383,6 +385,8 @@
           <DevelopmentServerPort>58098</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>https://localhost:44369/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/drugstore_003</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

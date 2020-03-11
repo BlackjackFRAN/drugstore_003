@@ -1,4 +1,5 @@
-﻿@model drugstore_003.Models.Compras
+﻿@using drugstore_003.Models
+@model List<LineaCompraCLS>
 
 @{
     ViewBag.Title = "Details";
@@ -6,45 +7,25 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Compras</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.total)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.total)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha)
-        </dt>
+<table class="table">
+    <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio de Compra</th>
+        <th>Subtotal</th>
+    </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.fecha)
-        </dd>
+    @foreach (var detalle in ViewBag.ListaDetalle)
+    {
+        <tr>
+            <td>@detalle.idProducto</td>
+            <td>@detalle.cantidad</td>
+            <td>@detalle.precio</td>
+            <td>@detalle.subtotal</td>
+        </tr>
+    }
+</table>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Proveedors.nombre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Proveedors.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Usuarios.usuario1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Usuarios.usuario1)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idCompra }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -39,8 +39,20 @@ namespace drugstore_003.Controllers
         // GET: Liquidacions/Create
         public ActionResult Create()
         {
-            ViewBag.idEmpleado = new SelectList(db.Empleadoes, "idEmpleado", "nombre");
+            //ViewBag.idEmpleado = new SelectList(db.Empleadoes, "idEmpleado", "nombre");
+            //CargarEmpleados();
+            List<string> Student = new List<string>();
+            Student.Add("Jignesh");
+            Student.Add("Tejas");
+            Student.Add("Rakesh");
+
+            ViewBag.Student = Student;
             return View();
+        }
+
+        public void CargarEmpleados() {
+            List<Empleadoes> lista = db.Empleadoes.ToList();
+            ViewBag.ListaEmpleado = lista;
         }
 
         // POST: Liquidacions/Create
@@ -77,6 +89,21 @@ namespace drugstore_003.Controllers
             return View(liquidacions);
         }
 
+        public ActionResult Liquidacion()
+        {
+            List<Empleadoes> lista = db.Empleadoes.ToList();
+            ViewBag.ListaEmpleado = lista;
+            return View();
+        }
+
+        
+        [HttpPost]
+        public ActionResult LiquidarEmpleado (int idEmpleado, DateTime mes)
+        {
+            string mensaje="id Empleado: "+idEmpleado +"Mes: "+ mes;
+            return Json(mensaje);            
+        }
+        
         // POST: Liquidacions/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.

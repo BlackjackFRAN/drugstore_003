@@ -1,51 +1,31 @@
 ﻿@model drugstore_003.Models.Ventas
 
-@{
-    ViewBag.Title = "Create";
-}
-
 <h2>Create</h2>
 
+<!--
+<table>
+    <tr>
+        <th>id</th>
+        <th>nombre</th>
+    </tr>
+    {
+        <tr>
+            <td></td>
+        </tr>
+    }
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Ventas</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.idUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.idUsuario, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.idUsuario, "", new { @class = "text-danger" })
-            </div>
-        </div>
+</table>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
-            </div>
-        </div>
+-->
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.total, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.total, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.total, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<ul>
+    @foreach (var student in ViewBag.Student)
+    { 
+    <li><: student></li>
+    }
+</ul>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
