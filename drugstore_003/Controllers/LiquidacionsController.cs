@@ -43,6 +43,138 @@ namespace drugstore_003.Controllers
             return View();
         }
 
+        public ActionResult NuevaLiquidacion()
+        {
+            List<Empleadoes> lista = db.Empleadoes.ToList();
+            ViewBag.ListaEmpleado = lista;
+            return View();
+        }
+
+        
+        [HttpPost]
+        public ActionResult LiquidarEmpleado(int idEmpleado, DateTime mes)
+        {
+            string mensaje = "No se pudo Guardar la Liquidacion";
+            Empleadoes emp = db.Empleadoes.Find(idEmpleado);
+            int mess, anio,idEmp;
+            bool encontrado = false;
+            foreach (var liquidacions in db.Liquidacions) {
+                mess = Convert.ToInt32(liquidacions.mes);
+                anio = Convert.ToInt32(liquidacions.anio);
+                idEmp = Convert.ToInt32(liquidacions.idEmpleado);
+                if (idEmp == idEmpleado && mess == mes.Month && anio == mes.Year)
+                {
+                    encontrado = true;
+                    mensaje = "La Liquidacion para este Empleado para el mes y año ingresado ya existe";
+                    return Json(mensaje);
+                }
+            }
+
+                if (encontrado == false)
+                {
+                Liquidacions liq = new Liquidacions()
+                {
+                    totalNeto = emp.sueldoBase,
+                    bruto = emp.sueldoBase,
+                    mes = mes.Month,
+                    anio = mes.Year,
+                    idEmpleado = idEmpleado,
+                        fechaDeposito = DateTime.Now,
+                    };
+                    db.Liquidacions.Add(liq);
+                    int neto = Convert.ToInt32(emp.sueldoBase);
+                    db.SaveChanges();
+
+                    int idL = db.Liquidacions.Max(l => l.idLiquidacion);
+                    if (idL != 0)
+                    {
+                        foreach (var concepto in db.Conceptoes)
+                        {
+                            DetalleLiquidacions detalle = new DetalleLiquidacions();
+                            detalle.idLiquidacion = idL;
+                            detalle.idConcepto = concepto.idConcepto;
+                            if (concepto.porcentaje == null)
+                            {
+                                detalle.monto = concepto.total;
+                            }
+                            else
+                            {
+                                detalle.monto = (liq.bruto * concepto.porcentaje) / 100;
+                            }
+                            neto -= Convert.ToInt32(detalle.monto);
+                            db.DetalleLiquidacions.Add(detalle);
+                        }
+                        Liquidacions liq2 = db.Liquidacions.Find(idL);
+                        liq2.totalNeto = neto;
+                        db.SaveChanges();
+                        mensaje = "se guardo con exito";
+                    }
+                }
+                         
+            return Json(mensaje);
+        }
+
+        [HttpPost]
+        public ActionResult LiquidarTodosEmpleado(DateTime mes)
+        {
+            string mensaje = "Ya existe liquidacion para este periodo";
+            int contador = 0;
+            int mess = mes.Month;
+            int anio = mes.Year;
+            int neto = 0;
+
+            List<Empleadoes> listaEmp = db.Empleadoes.ToList();
+
+            foreach (var emp in listaEmp)
+            {
+                Liquidacions listaLiq = db.Liquidacions.Where(x => x.idEmpleado == emp.idEmpleado && x.mes == mess && x.anio == anio).FirstOrDefault();
+
+                if (listaLiq == null) {
+                    Liquidacions liq = new Liquidacions()
+                    {
+                        totalNeto = emp.sueldoBase,
+                        bruto = emp.sueldoBase,
+                        mes = mes.Month,
+                        anio = mes.Year,
+                        idEmpleado = emp.idEmpleado,
+                        fechaDeposito = DateTime.Now,
+                    };
+                    db.Liquidacions.Add(liq);
+                    neto = Convert.ToInt32(emp.sueldoBase);
+                    db.SaveChanges();
+
+                    int idL = db.Liquidacions.Max(l => l.idLiquidacion);
+                    if (idL != 0)
+                    {
+                        foreach (var concepto in db.Conceptoes)
+                        {
+                            DetalleLiquidacions detalle = new DetalleLiquidacions();
+                            detalle.idLiquidacion = idL;
+                            detalle.idConcepto = concepto.idConcepto;
+                            if (concepto.porcentaje == null)
+                            {
+                                detalle.monto = concepto.total;
+                            }
+                            else
+                            {
+                                detalle.monto = (liq.bruto * concepto.porcentaje) / 100;
+                            }
+                            neto -= Convert.ToInt32(detalle.monto);
+                            db.DetalleLiquidacions.Add(detalle);
+                        }
+                        Liquidacions liq2 = db.Liquidacions.Find(idL);
+                        liq2.totalNeto = neto;
+                        db.SaveChanges();
+                        contador++;
+                        mensaje = "se registraron" +contador +" liquidaciones";
+                    }
+
+                }
+
+            }
+            return Json(mensaje);
+        }
+
         // POST: Liquidacions/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.

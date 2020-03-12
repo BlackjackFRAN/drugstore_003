@@ -346,6 +346,7 @@
     <Content Include="Views\Ventas\Edit.cshtml" />
     <Content Include="Views\Ventas\Index.cshtml" />
     <Content Include="Views\Ventas\NuevaVenta.cshtml" />
+    <Content Include="Views\Liquidacions\NuevaLiquidacion.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
