@@ -350,6 +350,8 @@
     <Content Include="Views\Liquidacions\NuevaLiquidacion.cshtml" />
     <Content Include="Views\Compras\NuevaCompra.cshtml" />
     <Content Include="Views\Empleadoes\DeleteFamiliar.cshtml" />
+    <Content Include="Views\Empleadoes\DetailsFamiliar.cshtml" />
+    <Content Include="Views\Empleadoes\EditFamiliar.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

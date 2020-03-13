@@ -130,8 +130,50 @@ namespace drugstore_003.Controllers
             return RedirectToAction("Details/"+idE);
         }
 
+        public ActionResult DetailsFamiliar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Familiars familiars = db.Familiars.Find(id);
+            if (familiars == null)
+            {
+                return HttpNotFound();
+            }
+            return View(familiars);
+        }
 
+        public ActionResult EditFamiliar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Familiars familiars = db.Familiars.Find(id);
+            if (familiars == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.idEmpleado = new SelectList(db.Empleadoes, "idEmpleado", "nombre", familiars.idEmpleado);
+            return View(familiars);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditFamiliar([Bind(Include = "idFamiliar,idEmpleado,Parentezco,nombre,apellido,fechaNacimiento")] Familiars familiars)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(familiars).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Details/"+familiars.idEmpleado);
+            }
+            ViewBag.idEmpleado = new SelectList(db.Empleadoes, "idEmpleado", "nombre", familiars.idEmpleado);
+            return View(familiars);
+        }
+
+        
         /*
 
         // GET: Empleadoes/Create
