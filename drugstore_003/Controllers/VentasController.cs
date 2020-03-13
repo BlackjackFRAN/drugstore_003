@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using drugstore_003.Models;
+using Rotativa;
 
 
 namespace drugstore_003.Controllers
@@ -275,6 +276,23 @@ namespace drugstore_003.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Reporte()
+        {
+            return View();
+        }
+    
+        
+        public ActionResult Imprimir()
+        {
+   
+
+            return new ViewAsPdf("Report")
+            {
+                FileName = "Venta.pdf",
+   
+            };
         }
     }
 }
