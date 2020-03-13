@@ -352,6 +352,7 @@
     <Content Include="Views\Empleadoes\DeleteFamiliar.cshtml" />
     <Content Include="Views\Empleadoes\DetailsFamiliar.cshtml" />
     <Content Include="Views\Empleadoes\EditFamiliar.cshtml" />
+    <Content Include="Views\Empleadoes\CreateFamiliar.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

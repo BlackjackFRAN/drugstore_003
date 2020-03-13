@@ -77,6 +77,12 @@
     </dl>
 </div>
 
+
+
+<p>
+    @Html.ActionLink("Agregar Familiar", "CreateFamiliar")
+</p>
+
 <table class="table">
     <tr>
         <th>nombre</th>
@@ -87,17 +93,17 @@
 
     @foreach (var item in ViewBag.ListaFamiliar)
     {
-<tr>
-    <td>@item.nombre</td>
-    <td>@item.apellido</td>
-    <td>@item.Parentezco</td>
-    <td>
-        @Html.ActionLink("Edit", "EditFamiliar", new { id = item.idFamiliar }) |
-        @Html.ActionLink("Details", "DetailsFamiliar", new { id = item.idFamiliar }) |
-        @Html.ActionLink("Delete", "DeleteFamiliar", new { id = item.idFamiliar })
-    </td>
+        <tr>
+            <td>@item.nombre</td>
+            <td>@item.apellido</td>
+            <td>@item.Parentezco</td>
+            <td>
+                @Html.ActionLink("Edit", "EditFamiliar", new { id = item.idFamiliar }) |
+                @Html.ActionLink("Details", "DetailsFamiliar", new { id = item.idFamiliar }) |
+                @Html.ActionLink("Delete", "DeleteFamiliar", new { id = item.idFamiliar })
+            </td>
 
-</tr>
+        </tr>
     }
 
 </table>

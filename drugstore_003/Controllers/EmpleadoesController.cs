@@ -173,7 +173,26 @@ namespace drugstore_003.Controllers
             return View(familiars);
         }
 
-        
+        public ActionResult CreateFamiliar()
+        {
+            ViewBag.idEmpleado = new SelectList(db.Empleadoes, "idEmpleado", "nombre");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateFamiliar([Bind(Include = "idFamiliar,idEmpleado,Parentezco,nombre,apellido,fechaNacimiento")] Familiars familiars)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Familiars.Add(familiars);
+                db.SaveChanges();
+                return RedirectToAction("Details/"+familiars.idEmpleado);
+            }
+
+            ViewBag.idEmpleado = new SelectList(db.Empleadoes, "idEmpleado", "nombre", familiars.idEmpleado);
+            return View(familiars);
+        }
         /*
 
         // GET: Empleadoes/Create
