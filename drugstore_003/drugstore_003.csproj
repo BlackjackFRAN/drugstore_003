@@ -167,6 +167,7 @@
     <Compile Include="Models\LineaCompras.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LineaComprasCLS.cs" />
     <Compile Include="Models\LineaVentas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -347,6 +348,8 @@
     <Content Include="Views\Ventas\Index.cshtml" />
     <Content Include="Views\Ventas\NuevaVenta.cshtml" />
     <Content Include="Views\Liquidacions\NuevaLiquidacion.cshtml" />
+    <Content Include="Views\Compras\NuevaCompra.cshtml" />
+    <Content Include="Views\Empleadoes\DeleteFamiliar.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

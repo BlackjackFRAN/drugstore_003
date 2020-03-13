@@ -76,6 +76,32 @@
 
     </dl>
 </div>
+
+<table class="table">
+    <tr>
+        <th>nombre</th>
+        <th>apellido</th>
+        <th>parentezco</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.ListaFamiliar)
+    {
+<tr>
+    <td>@item.nombre</td>
+    <td>@item.apellido</td>
+    <td>@item.Parentezco</td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.idFamiliar }) |
+        @Html.ActionLink("Details", "Details", new { id = item.idFamiliar }) |
+        @Html.ActionLink("Delete", "DeleteFamiliar", new { id = item.idFamiliar })
+    </td>
+
+</tr>
+    }
+
+</table>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.idEmpleado }) |
     @Html.ActionLink("Back to List", "Index")

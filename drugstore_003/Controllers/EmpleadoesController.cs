@@ -33,8 +33,26 @@ namespace drugstore_003.Controllers
             {
                 return HttpNotFound();
             }
+            List<Familiars> lista = db.Familiars.Where(f => f.idEmpleado == id).ToList();
+            ViewBag.ListaFamiliar = lista;
             return View(empleadoes);
         }
+
+        /*
+         public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Empleadoes empleadoes = db.Empleadoes.Find(id);
+            if (empleadoes == null)
+            {
+                return HttpNotFound();
+            }
+            return View(empleadoes);
+        }
+             */
 
 
         // GET: Empleadoes/Create
@@ -87,6 +105,31 @@ namespace drugstore_003.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult DeleteFamiliar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Familiars familiars = db.Familiars.Find(id);
+            if (familiars == null)
+            {
+                return HttpNotFound();
+            }
+            return View(familiars);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteFamiliar(int id)
+        {
+            Familiars familiars = db.Familiars.Find(id);
+            int idE = (int)familiars.idEmpleado;
+            db.Familiars.Remove(familiars);
+            db.SaveChanges();
+            return RedirectToAction("Details/"+idE);
+        }
+
 
 
         /*
@@ -175,6 +218,11 @@ namespace drugstore_003.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Empleadoes empleadoes = db.Empleadoes.Find(id);
+            foreach(var familia in db.Familiars.Where(f => f.idEmpleado == empleadoes.idEmpleado))
+            {
+                db.Familiars.Remove(familia);
+            }
+            db.SaveChanges();
             db.Empleadoes.Remove(empleadoes);
             db.SaveChanges();
             return RedirectToAction("Index");

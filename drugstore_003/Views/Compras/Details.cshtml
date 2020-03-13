@@ -44,6 +44,27 @@
 
     </dl>
 </div>
+
+<table class="table">
+    <tr>
+        <th>id Prod.</th>
+        <th>descripcion</th>
+        <th>cantidad</th>
+        <th>precio</th>
+        <th>subtotal</th>
+    </tr>
+
+    @foreach (var detalle in ViewBag.ListaDetalle)
+    {
+        <tr>
+            <td>@detalle.idProducto</td>
+            <td>@detalle.descripcion</td>
+            <td>@detalle.cantidad</td>
+            <td>@detalle.precioCompra</td>
+            <td>@detalle.subtotal</td>
+        </tr>
+    }
+</table>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.idCompra }) |
     @Html.ActionLink("Back to List", "Index")

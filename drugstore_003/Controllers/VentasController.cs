@@ -76,47 +76,12 @@ namespace drugstore_003.Controllers
 
         public ActionResult NuevaVenta()
         {
-            /*
-            VentaCLS venta = new VentaCLS();
-            venta.idUsuario = 1;
-            venta.fecha = DateTime.Now.Date;
-            List<LineaVentasCLS> lista = new List<LineaVentasCLS>();
-            venta.LineaVentas = lista;
-            return View(venta);
-            */
-
             cargarProducto();
             return View();
 
         }
 
-        [HttpPost]
-        public ActionResult NuevaVenta(VentaCLS venta)
-        {
-            //  Productoes producto = db.Productoes.Find(venta.idProducto);
-
-            /*
-                LineaVentasCLS linea = new LineaVentasCLS
-                {
-                    idProducto = producto.idProducto,
-                    descripcion = producto.descripcion,
-                    precio = producto.precioVenta,
-                    cantidad = venta.cantidad,
-                    subtotal = venta.cantidad * producto.precioVenta
-                };
-           */
-            //venta.LineaVentas.Add(linea);
-
-            //venta.idProducto = producto.idProducto;
-            VentaCLS venta2 = new VentaCLS();
-            venta2 = venta;
-            venta2.descripcion = "listo wey";
-            venta2.precioVenta = 50;
-                //venta.cantidad = 0;
-
-            return View(venta2);
-        }
-
+        
         [HttpPost]
         public ActionResult Seleccionar(int idProducto)
         {
