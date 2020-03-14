@@ -33,8 +33,26 @@ namespace drugstore_003.Controllers
             {
                 return HttpNotFound();
             }
+            List<Familiars> lista = db.Familiars.Where(f => f.idEmpleado == id).ToList();
+            ViewBag.ListaFamiliar = lista;
             return View(empleadoes);
         }
+
+        /*
+         public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Empleadoes empleadoes = db.Empleadoes.Find(id);
+            if (empleadoes == null)
+            {
+                return HttpNotFound();
+            }
+            return View(empleadoes);
+        }
+             */
 
 
         // GET: Empleadoes/Create
@@ -88,7 +106,93 @@ namespace drugstore_003.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult DeleteFamiliar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Familiars familiars = db.Familiars.Find(id);
+            if (familiars == null)
+            {
+                return HttpNotFound();
+            }
+            return View(familiars);
+        }
 
+        [HttpPost]
+        public ActionResult DeleteFamiliar(int id)
+        {
+            Familiars familiars = db.Familiars.Find(id);
+            int idE = (int)familiars.idEmpleado;
+            db.Familiars.Remove(familiars);
+            db.SaveChanges();
+            return RedirectToAction("Details/"+idE);
+        }
+
+        public ActionResult DetailsFamiliar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Familiars familiars = db.Familiars.Find(id);
+            if (familiars == null)
+            {
+                return HttpNotFound();
+            }
+            return View(familiars);
+        }
+
+        public ActionResult EditFamiliar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Familiars familiars = db.Familiars.Find(id);
+            if (familiars == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.idEmpleado = new SelectList(db.Empleadoes, "idEmpleado", "nombre", familiars.idEmpleado);
+            return View(familiars);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditFamiliar([Bind(Include = "idFamiliar,idEmpleado,Parentezco,nombre,apellido,fechaNacimiento")] Familiars familiars)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(familiars).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Details/"+familiars.idEmpleado);
+            }
+            ViewBag.idEmpleado = new SelectList(db.Empleadoes, "idEmpleado", "nombre", familiars.idEmpleado);
+            return View(familiars);
+        }
+
+        public ActionResult CreateFamiliar()
+        {
+            ViewBag.idEmpleado = new SelectList(db.Empleadoes, "idEmpleado", "nombre");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateFamiliar([Bind(Include = "idFamiliar,idEmpleado,Parentezco,nombre,apellido,fechaNacimiento")] Familiars familiars)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Familiars.Add(familiars);
+                db.SaveChanges();
+                return RedirectToAction("Details/"+familiars.idEmpleado);
+            }
+
+            ViewBag.idEmpleado = new SelectList(db.Empleadoes, "idEmpleado", "nombre", familiars.idEmpleado);
+            return View(familiars);
+        }
         /*
 
         // GET: Empleadoes/Create
@@ -175,6 +279,11 @@ namespace drugstore_003.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Empleadoes empleadoes = db.Empleadoes.Find(id);
+            foreach(var familia in db.Familiars.Where(f => f.idEmpleado == empleadoes.idEmpleado))
+            {
+                db.Familiars.Remove(familia);
+            }
+            db.SaveChanges();
             db.Empleadoes.Remove(empleadoes);
             db.SaveChanges();
             return RedirectToAction("Index");

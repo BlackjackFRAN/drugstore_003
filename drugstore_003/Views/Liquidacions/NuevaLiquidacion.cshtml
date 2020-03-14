@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Nueva Liquidacion";
+}
+
+<h2>Liquidacion</h2>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".btn-liquidar").click(function () {
+            valor = $(this).parents("tr").find("td").eq(0).html();
+            alert("Id Empleado: " + valor + "  mes: " + $(mes).val())
+
+
+            $.ajax({
+                type: "POST",
+                url: "LiquidarEmpleado",
+                data: { "idEmpleado": valor, "mes": $(mes).val() },
+                success: function (mensaje) {
+                    alert(mensaje);
+                }
+            });
+        });
+
+        $("#liqTodo").click(function () {
+            alert("  mes: " + $(mes).val())
+            $.ajax({
+                type: "POST",
+                url: "LiquidarTodosEmpleado",
+                data: { "mes": $(mes).val() },
+                success: function (mensaje) {
+                    alert(mensaje);
+                }
+            });
+        });
+    });
+</script>
+
+<input class="btn btn-primary btn-lg" type="month" id="mes" />
+<br />
+<br />
+
+<button class='btn btn-info' id="liqTodo" type='button'>liquidar Todo</button>
+<br />
+<table class="table">
+    <tr>
+        <th>id</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th></th>
+    </tr>
+    @foreach (var item in ViewBag.ListaEmpleado)
+    {
+        <tr>
+            <td>@item.idEmpleado</td>
+            <td>@item.nombre</td>
+            <td>@item.apellido</td>
+            <td><button class="btn btn-success btn-liquidar" type='button'>liquidar</button></td>
+        </tr>
+    }
+
+</table>
+
