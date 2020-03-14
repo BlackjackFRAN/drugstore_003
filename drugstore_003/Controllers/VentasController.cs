@@ -264,6 +264,12 @@ namespace drugstore_003.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Ventas ventas = db.Ventas.Find(id);
+            foreach (var lineaVenta in db.LineaVentas.Where(x=>x.idVenta == ventas.idVenta))
+            {
+                db.LineaVentas.Remove(lineaVenta);
+            }
+
+            db.SaveChanges();
             db.Ventas.Remove(ventas);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -288,7 +294,7 @@ namespace drugstore_003.Controllers
         {
    
 
-            return new ViewAsPdf("Report")
+            return new ViewAsPdf("Reporte")
             {
                 FileName = "Venta.pdf",
    
