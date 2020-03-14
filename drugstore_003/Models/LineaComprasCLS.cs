@@ -10,7 +10,7 @@ namespace drugstore_003.Models
         public int idLineaCompra { get; set; }
         public Nullable<int> idCompra { get; set; }
         public Nullable<int> idProducto { get; set; }
-        public string descripcion  { get; set; }
+        public string descripcion { get; set; }
         public Nullable<int> cantidad { get; set; }
         public Nullable<double> subtotal { get; set; }
         public Nullable<double> precioCompra { get; set; }
