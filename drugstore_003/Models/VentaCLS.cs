@@ -14,8 +14,13 @@ namespace drugstore_003.Models
         [DataType(DataType.Date)]
         public DateTime fecha { get; set; }
         public string total { get; set; }
-
         public List<LineaVentasCLS> LineaVentas { get; set; }
+
+        public VentaCLS()
+        { }
+
+        
+
 
         public int idProducto { get; set; }
         public string descripcion { get; set; }

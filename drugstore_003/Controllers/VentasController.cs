@@ -284,17 +284,49 @@ namespace drugstore_003.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult Reporte()
+        public ActionResult Reporte(VentaCLS v)
         {
-            return View();
+            
+            return View(v);
         }
     
         
-        public ActionResult Imprimir()
+        public ActionResult Imprimir(int id)
         {
-   
+            Ventas ventas = db.Ventas.Find(id);
+            if (ventas == null)
+            {
+                return HttpNotFound();
+            }
 
-            return new ViewAsPdf("Reporte")
+            List<LineaVentasCLS> listaLineas = null;
+            using (var bd2 = new Bd_drugstore_002Entities())
+            {
+                listaLineas = (from LineaVentas in bd2.LineaVentas
+                               where LineaVentas.idVenta == id
+                               join Productoes in bd2.Productoes
+                               on LineaVentas.idProducto equals Productoes.idProducto
+                               select new LineaVentasCLS
+                               {
+                                   idLineaVenta = LineaVentas.idLineaVenta,
+                                   idProducto = LineaVentas.idProducto,
+                                   cantidad = LineaVentas.cantidad,
+                                   subtotal = LineaVentas.subtotal,
+                                   precio = LineaVentas.precio,
+                                   descripcion = Productoes.descripcion
+                               }).ToList();
+            }
+
+            VentaCLS venta2 = new VentaCLS();
+            venta2.idVenta = ventas.idVenta;
+            venta2.idUsuario = (int)ventas.idUsuario;
+            venta2.fecha = (DateTime)ventas.fecha;
+            venta2.total = ventas.total.ToString();
+            venta2.LineaVentas = listaLineas;
+
+
+
+            return new ViewAsPdf("Reporte",venta2)
             {
                 FileName = "Venta.pdf",
    
