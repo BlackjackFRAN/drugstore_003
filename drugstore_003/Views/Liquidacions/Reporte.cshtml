@@ -1,0 +1,104 @@
+﻿@model drugstore_003.Models.Liquidacions
+
+@{
+
+    Layout = null;
+}
+
+<style>
+
+    h1, h2, h3, h4 {
+        margin: 2px;
+        padding: 0;
+    }
+
+    table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    table th,
+    table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        text-align:center;
+        border-top: 1px solid #eceeef;
+    }
+    .contenedorPrincipal {
+        margin: 40 150 0 150;
+        padding: 0 30 0 30;
+    }
+
+    .contenedorSecundario {
+        padding: 0 20 0 20;
+        margin-bottom: 20px;
+        border: 1px solid black;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .flex-row {
+        flex-direction: row;
+    }
+
+    .flex-column {
+        flex-direction: column;
+    }
+
+    .justify-content-between {
+        justify-content: space-between;
+    }
+</style>
+
+<div class="contenedorPrincipal">
+    <h2 class="float-right">Periodo: @Model.mes / @Model.anio </h2>
+
+
+    <div class="d-flex flex-column contenedorSecundario">
+
+        <div class="d-flex flex-row justify-content-between">
+            <h4>Nombre y Apellido: @Model.Empleadoes.nombre @Model.Empleadoes.apellido</h4>
+            <h4>Fecha Nacimiento: @Model.Empleadoes.fechaNacimiento</h4>
+            <h4>Tipo: @Model.Empleadoes.tipo</h4>
+        </div>
+        <div class="d-flex flex-row justify-content-between">
+            <h4>Dni: @Model.Empleadoes.dni</h4>
+            <h4>Sueldo: $@Model.Empleadoes.sueldoBase</h4>
+        </div>
+        <div class="d-flex flex-row justify-content-between">
+            <h4>Estado Civil: @Model.Empleadoes.estadoCivil</h4>
+
+        </div>
+    </div>
+
+    <div class="contenedorSecundario">
+        <table>
+            <tr>
+                <th>Concepto</th>
+                <th>Unidades</th>
+                <th>Descuentos</th>
+                
+            </tr>
+
+            @foreach (var d in Model.DetalleLiquidacions)
+            {
+                <tr>
+                    <td>@d.Conceptoes.descripcion</td>
+                    <td>%@d.Conceptoes.porcentaje</td>
+                    <td>@d.Conceptoes.total</td>
+                    
+                </tr>
+            }
+        </table>
+
+        <div class="d-flex justify-content-between">
+            <h2>Acumulado Bruto: $@Model.bruto</h2>
+            <h2>Total Neto: $@Model.totalNeto</h2>
+        </div>
+    </div>
+
+</div>
+

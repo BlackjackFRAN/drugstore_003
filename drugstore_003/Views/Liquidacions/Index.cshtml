@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.Empleadoes.nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idLiquidacion }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idLiquidacion }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idLiquidacion })
+            @Html.ActionLink("Ver", "Reporte", new { id = item.idLiquidacion }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.idLiquidacion })|
+            @Html.ActionLink("Imprimir", "Imprimir", new { id = item.idLiquidacion })
         </td>
     </tr>
 }

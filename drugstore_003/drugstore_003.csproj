@@ -2114,6 +2114,7 @@
     <Content Include="Views\Error\UnauthorizedOperation.cshtml" />
     <Content Include="Views\Ventas\NuevaVenta.cshtml" />
     <Content Include="Views\Ventas\Reporte.cshtml" />
+    <Content Include="Views\Liquidacions\Reporte.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

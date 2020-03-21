@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using drugstore_003.Models;
-
+using Rotativa;
 namespace drugstore_003.Controllers
 {
     public class LiquidacionsController : Controller
@@ -90,18 +90,20 @@ namespace drugstore_003.Controllers
                     {
                         foreach (var concepto in db.Conceptoes)
                         {
-                            DetalleLiquidacions detalle = new DetalleLiquidacions();
+                           DetalleLiquidacions detalle = new DetalleLiquidacions();
                             detalle.idLiquidacion = idL;
                             detalle.idConcepto = concepto.idConcepto;
                             if (concepto.porcentaje == null)
                             {
                                 detalle.monto = concepto.total;
+                           
                             }
                             else
                             {
+                                concepto.total = (emp.sueldoBase * concepto.porcentaje) / 100;
                                 detalle.monto = (liq.bruto * concepto.porcentaje) / 100;
                             }
-                            neto -= Convert.ToInt32(detalle.monto);
+                            neto -= Convert.ToInt32(concepto.total);
                             db.DetalleLiquidacions.Add(detalle);
                         }
                         Liquidacions liq2 = db.Liquidacions.Find(idL);
@@ -157,9 +159,10 @@ namespace drugstore_003.Controllers
                             }
                             else
                             {
+                                concepto.total = (emp.sueldoBase * concepto.porcentaje) / 100;
                                 detalle.monto = (liq.bruto * concepto.porcentaje) / 100;
                             }
-                            neto -= Convert.ToInt32(detalle.monto);
+                            neto -= Convert.ToInt32(concepto.total);
                             db.DetalleLiquidacions.Add(detalle);
                         }
                         Liquidacions liq2 = db.Liquidacions.Find(idL);
@@ -251,6 +254,29 @@ namespace drugstore_003.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult Reporte(int id)
+        {
+            Liquidacions l = db.Liquidacions.Find(id);
+
+            return View(l);
+        }
+
+
+        public ActionResult Imprimir(int id)
+        {
+            
+            Liquidacions l = db.Liquidacions.Find(id);
+
+            return new ViewAsPdf("Reporte",l)
+            {
+                FileName = "ReciboDeSueldo_"+l.Empleadoes.apellido+"_"+l.Empleadoes.nombre+".pdf",
+                PageSize = Rotativa.Options.Size.A4
+
+            };
+        }
+
 
         protected override void Dispose(bool disposing)
         {
